@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-
+{ ... }:
 {
  networking.firewall = {
 	allowedTCPPorts = [ 5357 ];

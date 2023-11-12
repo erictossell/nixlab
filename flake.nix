@@ -23,7 +23,6 @@
               ./.       
               ./modules/rpi4_core
               ./modules/samba-server
-              ./modules/nextcloud            
         ];
       }; #nixbox
 

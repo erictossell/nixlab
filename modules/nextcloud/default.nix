@@ -1,4 +1,4 @@
-{ config, pkgs, hostName,  ... }:
+{ pkgs, hostName,  ... }:
 {
 	environment.etc."nextcloud-admin-pass".text = "test123";
 #	environment.systemPackages = with pkgs; [ openssl ];

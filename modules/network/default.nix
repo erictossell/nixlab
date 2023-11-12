@@ -1,4 +1,4 @@
-{ config, pkgs, hostName, address, SSID, SSIDpass, interface, ... }:
+{ hostName, address, interface, ... }:
 {
   age.secrets."wireless.env" = {
 	file = ../../secrets/wireless.age;

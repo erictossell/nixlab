@@ -1,4 +1,4 @@
-{ config, pkgs, lib, agenix, user, ... }:
+{ pkgs, user, ... }:
 let
   corePackages = import pkgs/core.nix { inherit pkgs; };
 in 

@@ -68,7 +68,7 @@
         system = "x86_64-linux";
         specialArgs = {
           user = "eriim";
-          hostName = "nixboard";
+          hostName = "nixtop";
           address = "10.0.0.190";
           interface = "wlp63s0";
           system = "x86_64-linux";

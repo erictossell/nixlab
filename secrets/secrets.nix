@@ -7,5 +7,5 @@ let
    systems = [ nixbox nixboard nixcube ];
 in
 {
-  "wireless.age".publicKeys = [ eriim nixbox nixboard nixcube ];
+  "wireless.age".publicKeys = users ++ systems;
 }

@@ -1,16 +1,35 @@
 {
   inputs = {
+
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     agenix = {
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.darwin.follows = "";
-    };
+    };#agenix
+
   };
 
   outputs = { self, nixpkgs, agenix, ... } @ attrs:{
     nixosConfigurations = { 
+
+      nixboard = nixpkgs.lib.nixosSystem {
+        system = "aarch64-linux";
+          specialArgs = {
+            user = "eriim";
+            hostName = "nixboard";
+            address = "10.0.0.196";
+            interface = "wlan0";
+        } // attrs;
+        modules = [       
+          ./.
+          ./modules/rpi
+          ./modules/rpi/4
+          ./modules/postgres
+        ];
+      };#nixboard
+
       nixbox = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         specialArgs = {
@@ -20,27 +39,13 @@
           interface = "wlan0";
         } // attrs ;
         modules = [
-              ./.       
-              ./modules/rpi4_core
-              ./modules/samba-server
+          ./.       
+          ./modules/rpi
+          ./modules/rpi/4
+          ./modules/samba-server
         ];
-      }; #nixbox
+      };#nixbox
 
-      nixboard = nixpkgs.lib.nixosSystem {
-       system = "aarch64-linux";
-        specialArgs = {
-          user = "eriim";
-          hostName = "nixboard";
-          address = "10.0.0.196";
-          interface = "wlan0";
-        } // attrs;
-        modules = [       
-            ./.
-            ./modules/rpi4_core
-            ./modules/postgres
-        ];
-      }; #nixboard
-    
       nixcube = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         specialArgs = {
@@ -50,10 +55,25 @@
           interface = "wlan0";
         } // attrs;
         modules = [       
-            ./.
-            ./modules/rpi3_core      
+          ./.
+          ./modules/rpi
+          ./modules/rpi/3      
         ];
-      }; #nixcube
+      };#nixcube
+  
+      nixtop = nixpkgs.lib.nixosSystem {
+        system = "x86_64-linux";
+        specialArgs = {
+          user = "eriim";
+          hostName = "nixboard";
+          address = "10.0.0.190";
+          interface = "wlp63s0";
+        } // attrs;
+        modules = [       
+          ./.
+          ./x86_64
+        ];
+      };#nixtop
 
     };#configs
   };#outputs

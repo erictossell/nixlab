@@ -71,7 +71,7 @@
         } // attrs;
         modules = [       
           ./.
-          ./x86_64
+          ./modules/x86_64
         ];
       };#nixtop
 

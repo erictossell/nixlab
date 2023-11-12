@@ -16,11 +16,12 @@
 
       nixboard = nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
-          specialArgs = {
-            user = "eriim";
-            hostName = "nixboard";
-            address = "10.0.0.196";
-            interface = "wlan0";
+        specialArgs = {
+          user = "eriim";
+          hostName = "nixboard";
+          address = "10.0.0.196";
+          interface = "wlan0";
+          system = "aarch64-linux";
         } // attrs;
         modules = [       
           ./.
@@ -37,6 +38,7 @@
           hostName = "nixbox";
           address = "10.0.0.195";
           interface = "wlan0";
+          system = "aarch64-linux";
         } // attrs ;
         modules = [
           ./.       
@@ -53,6 +55,7 @@
           hostName = "nixcube";
           address = "10.0.0.197";
           interface = "wlan0";
+          system = "aarch64-linux";
         } // attrs;
         modules = [       
           ./.
@@ -68,6 +71,7 @@
           hostName = "nixboard";
           address = "10.0.0.190";
           interface = "wlp63s0";
+          system = "x86_64-linux";
         } // attrs;
         modules = [       
           ./.

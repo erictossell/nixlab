@@ -27,7 +27,7 @@
           ./.
           ./modules/rpi
           ./modules/rpi/4
-          ./modules/postgres
+          ./modules/ldap
         ];
       };#nixboard
 
@@ -80,5 +80,11 @@
       };#nixtop
 
     };#configs
+
+    templates.default = {
+	path = ./.;
+	description = "A NixOS Flake for raspberry pi devivces";
+    };#templates
+
   };#outputs
 }#flake

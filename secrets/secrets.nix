@@ -9,4 +9,5 @@ let
 in
 {
   "wireless.age".publicKeys = users ++ systems;
+  "tailscale.age".publicKeys = users ++ systems;
 }

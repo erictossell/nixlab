@@ -27,7 +27,7 @@
           ./.
           ./modules/rpi
           ./modules/rpi/4
-          ./modules/ldap
+          #./modules/ldap
         ];
       };#nixboard
 

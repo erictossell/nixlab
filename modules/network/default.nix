@@ -1,5 +1,9 @@
 { hostName, address, interface, ... }:
 {
+  imports = [
+    ./tailscale.nix
+  ];
+
   age.secrets."wireless.env" = {
 	file = ../../secrets/wireless.age;
 	path = "/run/secrets/wireless.env";

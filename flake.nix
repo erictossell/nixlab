@@ -14,14 +14,15 @@
   outputs = { self, nixpkgs, agenix, ... } @ attrs:{
     nixosConfigurations = { 
 
-      nixboard = nixpkgs.lib.nixosSystem {
-        system = "aarch64-linux";
+      nixboard =
+      let system = "aarch64-linux";
+      in nixpkgs.lib.nixosSystem {
         specialArgs = {
-          user = "eriim";
+	  user = "eriim";
           hostName = "nixboard";
           address = "10.0.0.196";
           interface = "wlan0";
-          system = "aarch64-linux";
+	  inherit system;
         } // attrs;
         modules = [       
           ./.
@@ -31,15 +32,17 @@
         ];
       };#nixboard
 
-      nixbox = nixpkgs.lib.nixosSystem {
+      nixbox =
+      let system = "aarch64-linux";
+      in nixpkgs.lib.nixosSystem {
         system = "aarch64-linux";
         specialArgs = {
           user = "eriim";
           hostName = "nixbox";
           address = "10.0.0.195";
           interface = "wlan0";
-          system = "aarch64-linux";
-        } // attrs ;
+          inherit system;
+	} // attrs ;
         modules = [
           ./.       
           ./modules/rpi
@@ -48,15 +51,17 @@
         ];
       };#nixbox
 
-      nixcube = nixpkgs.lib.nixosSystem {
-        system = "aarch64-linux";
+      nixcube = 
+      let system = "aarch64-linux";
+      in nixpkgs.lib.nixosSystem {
+         system = "aarch64-linux";
         specialArgs = {
           user = "eriim";
           hostName = "nixcube";
           address = "10.0.0.197";
           interface = "wlan0";
-          system = "aarch64-linux";
-        } // attrs;
+          inherit system;
+	} // attrs;
         modules = [       
           ./.
           ./modules/rpi
@@ -64,14 +69,16 @@
         ];
       };#nixcube
   
-      nixtop = nixpkgs.lib.nixosSystem {
+      nixtop =
+      let system = "aarch64-linux";
+      in nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         specialArgs = {
           user = "eriim";
           hostName = "nixtop";
           address = "10.0.0.190";
           interface = "wlp63s0";
-          system = "x86_64-linux";
+          inherit system;
         } // attrs;
         modules = [       
           ./.

@@ -1,9 +1,8 @@
 {
   imports = [
     ./agenix
-    ./core
+    ./rpi
     ./network
-    ./podman
     ./ssh
   ];
 }

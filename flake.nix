@@ -14,76 +14,62 @@
   outputs = { self, nixpkgs, agenix, ... } @ attrs:{
     nixosConfigurations = { 
 
-      nixboard = nixpkgs.lib.nixosSystem {
-        system = "aarch64-linux";
-        specialArgs = {
-          user = "eriim";
-          hostName = "nixboard";
-          address = "10.0.0.196";
-          interface = "wlan0";
-          system = "aarch64-linux";
-        } // attrs;
-        modules = [       
-          ./.
-          ./modules/rpi
-          ./modules/rpi/4
-          #./modules/ldap
-        ];
-      };#nixboard
-
-      nixbox = nixpkgs.lib.nixosSystem {
-        system = "aarch64-linux";
+      nixbox =
+      let system = "aarch64-linux";
+      in nixpkgs.lib.nixosSystem {
         specialArgs = {
           user = "eriim";
           hostName = "nixbox";
           address = "10.0.0.195";
           interface = "wlan0";
-          system = "aarch64-linux";
-        } // attrs ;
+          inherit system;
+	} // attrs ;
         modules = [
-          ./.       
-          ./modules/rpi
+          ./.
           ./modules/rpi/4
           ./modules/samba-server
+	  ./modules/podman
         ];
       };#nixbox
 
-      nixcube = nixpkgs.lib.nixosSystem {
-        system = "aarch64-linux";
+      nixboard =
+      let system = "aarch64-linux";
+      in nixpkgs.lib.nixosSystem {
+        specialArgs = {
+	  user = "eriim";
+          hostName = "nixboard";
+          address = "10.0.0.196";
+          interface = "wlan0";
+	  inherit system;
+        } // attrs;
+        modules = [       
+          ./.
+          ./modules/rpi/4
+        ];
+      };#nixboard
+
+      nixcube = 
+      let system = "aarch64-linux";
+      in nixpkgs.lib.nixosSystem {
         specialArgs = {
           user = "eriim";
           hostName = "nixcube";
           address = "10.0.0.197";
           interface = "wlan0";
-          system = "aarch64-linux";
-        } // attrs;
+          inherit system;
+	} // attrs;
         modules = [       
           ./.
-          ./modules/rpi
           ./modules/rpi/3      
+	  ./modules/monitoring
         ];
       };#nixcube
-  
-      nixtop = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {
-          user = "eriim";
-          hostName = "nixtop";
-          address = "10.0.0.190";
-          interface = "wlp63s0";
-          system = "x86_64-linux";
-        } // attrs;
-        modules = [       
-          ./.
-          ./modules/x86_64
-        ];
-      };#nixtop
 
     };#configs
 
     templates.default = {
 	path = ./.;
-	description = "A NixOS Flake for raspberry pi devivces";
+	description = "A NixOS Flake for raspberry pi devices";
     };#templates
 
   };#outputs

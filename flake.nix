@@ -14,6 +14,24 @@
   outputs = { self, nixpkgs, agenix, ... } @ attrs:{
     nixosConfigurations = { 
 
+      nixbox =
+      let system = "aarch64-linux";
+      in nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          user = "eriim";
+          hostName = "nixbox";
+          address = "10.0.0.195";
+          interface = "wlan0";
+          inherit system;
+	} // attrs ;
+        modules = [
+          ./.
+          ./modules/rpi/4
+          ./modules/samba-server
+	  ./modules/podman
+        ];
+      };#nixbox
+
       nixboard =
       let system = "aarch64-linux";
       in nixpkgs.lib.nixosSystem {
@@ -26,35 +44,13 @@
         } // attrs;
         modules = [       
           ./.
-          ./modules/rpi
           ./modules/rpi/4
-          #./modules/ldap
         ];
       };#nixboard
-
-      nixbox =
-      let system = "aarch64-linux";
-      in nixpkgs.lib.nixosSystem {
-        system = "aarch64-linux";
-        specialArgs = {
-          user = "eriim";
-          hostName = "nixbox";
-          address = "10.0.0.195";
-          interface = "wlan0";
-          inherit system;
-	} // attrs ;
-        modules = [
-          ./.       
-          ./modules/rpi
-          ./modules/rpi/4
-          ./modules/samba-server
-        ];
-      };#nixbox
 
       nixcube = 
       let system = "aarch64-linux";
       in nixpkgs.lib.nixosSystem {
-         system = "aarch64-linux";
         specialArgs = {
           user = "eriim";
           hostName = "nixcube";
@@ -64,33 +60,16 @@
 	} // attrs;
         modules = [       
           ./.
-          ./modules/rpi
           ./modules/rpi/3      
+	  ./modules/monitoring
         ];
       };#nixcube
-  
-      nixtop =
-      let system = "aarch64-linux";
-      in nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {
-          user = "eriim";
-          hostName = "nixtop";
-          address = "10.0.0.190";
-          interface = "wlp63s0";
-          inherit system;
-        } // attrs;
-        modules = [       
-          ./.
-          ./modules/x86_64
-        ];
-      };#nixtop
 
     };#configs
 
     templates.default = {
 	path = ./.;
-	description = "A NixOS Flake for raspberry pi devivces";
+	description = "A NixOS Flake for raspberry pi devices";
     };#templates
 
   };#outputs

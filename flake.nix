@@ -45,6 +45,7 @@
         modules = [       
           ./.
           ./modules/rpi/4
+	  ./modules/docker
         ];
       };#nixboard
 

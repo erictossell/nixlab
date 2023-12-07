@@ -22,7 +22,7 @@
 		prefixLength = 24;
 	}];
 	defaultGateway = {
-		address = "10.0.0.1";
+		address = "192.168.2.1";
 		interface = interface;
 	};
 	nameservers = [ "8.8.8.8" "8.8.4.4" ];

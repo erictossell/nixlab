@@ -2,7 +2,7 @@
 {
   networking.wireless = {
     enable = true;
-    interface = [ "${interface}" ];
+    interfaces = [ "${interface}" ];
     userControlled.enable = true;
   };
 }

@@ -69,6 +69,7 @@
       live_image = 
       let system = "aarch64-linux";
       in nixpkgs.lib.nixosSystem {
+        system = system;
         specialArgs = {
 	  user = "nixos";
 	  hostName = "live-image";

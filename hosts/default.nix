@@ -1,7 +1,7 @@
 { pkgs, hostName, user, ... }:
 {
   imports = [
-    ./${hostName}/hardware-configuration.nix
+    ./${hostName}
   ];
 
   nix.settings = {
@@ -11,12 +11,10 @@
 
   nixpkgs.config.allowUnfree = true;
 
-  
   environment.systemPackages = with pkgs; [
     btop
     vim
   ];
 
   system.stateVersion = "23.11";
-
 }

@@ -66,6 +66,23 @@
         ];
       };#nixcube
 
+      live_image = 
+      let system = "aarch64-linux";
+      in nixpkgs.lib.nixosSystem {
+        specialArgs = {
+	  user = "nixos";
+	  hostName = "live-image";
+	  interface = "wlan0";
+	  inherit system;
+	} // attrs;
+	modules = [
+          ./hosts
+	  ./users
+	  ./modules/ssh
+	  ./modules/wpa
+	];
+      };#live-image
+
     };#configs
 
     templates.default = {

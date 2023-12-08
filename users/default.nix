@@ -5,7 +5,6 @@
     shell = pkgs.bash;
     isNormalUser = true;
     initialPassword = "temp123";
-    description = "Eriim";
     extraGroups = [ "wheel" ];
   };
 }

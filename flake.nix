@@ -45,7 +45,6 @@
         modules = [       
           ./.
           ./modules/rpi/4
-	  ./modules/docker
         ];
       };#nixboard
 
@@ -61,8 +60,7 @@
 	} // attrs;
         modules = [       
           ./.
-          ./modules/rpi/3      
-	  ./modules/monitoring
+          ./modules/rpi/3
         ];
       };#nixcube
 
@@ -80,7 +78,6 @@
           ./hosts
 	  ./users
 	  ./modules/ssh
-	  ./modules/wpa
 	];
       };#live-image
 

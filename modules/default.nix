@@ -2,7 +2,7 @@
   imports = [
     ./agenix
     ./rpi
-    ./network
+    ./networking
     ./ssh
   ];
 }

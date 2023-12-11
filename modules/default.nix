@@ -3,6 +3,7 @@
     ./agenix
     ./rpi
     ./networking
+    ./pkgs
     ./ssh
   ];
 }

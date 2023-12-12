@@ -13,14 +13,14 @@ in
       Restart = "always";
     };
     wantedBy = [ "multi-user.target" ];
-    after = [ "network.target" "podman.service" ];
+    after = [ "network.target" "docker.service" ];
     script = ''
       cd ${compose_path}
-      ${pkgs.podman-compose}/bin/podman-compose up --detach
+      ${pkgs.docker-compose}/bin/docker-compose up --detach
     '';
     preStop = ''
       cd ${compose_path}
-      ${pkgs.podman-compose}/bin/podman-compose down
+      ${pkgs.docker-compose}/bin/docker-compose down
     '';
   };
 

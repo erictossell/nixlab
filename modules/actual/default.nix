@@ -3,7 +3,7 @@
    config.virtualisation.oci-containers.containers = {
      actual = {
        image = "actualbudget/actual-server:latest";
-       ports = ["127.0.0.1:8443:5006"];
+       ports = ["8443:5006"];
        volumes = [
          "/srv/actual-data:/data"
 	 "/srv/actual-data/cert.crt:/data/cert.crt"

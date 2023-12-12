@@ -17,6 +17,7 @@ in
       ${pkgs.podman-compose}/bin/podman-compose up --detach
     '';
     preStop = ''
+      cd ${compose_path}
       ${pkgs.podman-compose}/bin/podman-compose down
     '';
   };

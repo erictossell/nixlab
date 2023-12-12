@@ -9,6 +9,8 @@ in
   systemd.services.actualServer = {
     serviceConfig = {
       Environment = "PATH=/run/current-system/sw/bin";
+      Type = "simple";
+      Restart = "always";
     };
     wantedBy = [ "multi-user.target" ];
     after = [ "network.target" "podman.service" ];

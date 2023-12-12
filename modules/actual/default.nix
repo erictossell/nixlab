@@ -7,6 +7,9 @@ in
   environment.etc."${compose_path}/compose.yaml".source = ./compose.yaml;
 
   systemd.services.actualServer = {
+    serviceConfig = {
+      Environment = "PATH=/run/current-system/sw/bin";
+    };
     wantedBy = [ "multi-user.target" ];
     after = [ "network.target" "podman.service" ];
     script = ''

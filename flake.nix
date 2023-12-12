@@ -29,6 +29,7 @@
           ./modules/rpi/4
           ./modules/samba-server
 	  ./modules/podman
+	  ./modules/actual
         ];
       };#nixbox
 

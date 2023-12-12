@@ -19,7 +19,7 @@
 		#use sendfile = yes
 		#max protocol = smb2
 		# note: localhost is the ipv5 localhost ::1
-		hosts allow = 10.0.0. 127.0.0.1 localhost
+		hosts allow = 192.168.2. 127.0.0.1 localhost
 		hosts deny 0.0.0./0
 		guest account = nobody
 		map to guest = bad user

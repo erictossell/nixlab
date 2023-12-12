@@ -1,24 +1,23 @@
-{ config, pkgs, user, ... }:
-let
-  data_path = "/srv/actual-data/";
-  compose_path = "/home/${user}/actual";
-in
-{
-  environment.etc."${compose_path}/compose.yaml".source = ./compose.yaml;
-
-  systemd.services.actualServer = {
-    serviceConfig = {
-      Environment = "PATH=/run/current-system/sw/bin";
-    };
-    wantedBy = [ "multi-user.target" ];
-    after = [ "network.target" "podman.service" ];
-    script = ''
-      cd ${compose_path}
-      ${pkgs.podman-compose}/bin/podman-compose up --detach
-    '';
-    preStop = ''
-      ${pkgs.podman-compose}/bin/podman-compose down
-    '';
-  };
-
+{ config, pkgs, ... }:
+ {
+   config.virtualisation.oci-containers.containers = {
+     actual = {
+       image = "actualbudget/actual-server:latest";
+       ports = ["8443:5006"];
+       volumes = [
+         "/srv/actual-data:/data"
+	 "/srv/actual-data/cert.crt:/data/cert.crt"
+	 "/srv/actual-data/key.key:/data/key.key"
+       ];
+       environment = {
+         ACTUAL_HTTPS_KEY="/data/key.key";
+	 ACTUAL_HTTPS_CERT="/data/cert.crt";
+       };
+       cmd = [
+         "--pull=always"
+         "--restart=unless-stopped"
+	 "-d"
+       ];
+     };
+   };
 }

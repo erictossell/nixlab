@@ -62,6 +62,7 @@
         modules = [       
           ./.
           ./modules/rpi/3
+	  ./modules/docker
         ];
       };#nixcube
 

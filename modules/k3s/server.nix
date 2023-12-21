@@ -9,4 +9,6 @@
     token = "secret";
     clusterInit = true;
   };
+  networking.firewall.allowedUDPPorts = [ 6443 ];
+  networking.firewall.allowedTCPPorts = [ 6443 ];
 }

@@ -2,10 +2,9 @@
 
 A basic configuration for 3 different raspberry-pi devices running NixOS.
 
-Includes:
+- A live image for flashing SSH access
 
-    - Network configuration with Agenix encrypted secrets
+- Network configuration with Agenix encrypted secrets
 
-    - Podman for adhoc virtualisation
+- Docker, managed by `terraform`
 
-    - A smattering of `.nix` configurations for various services.

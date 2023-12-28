@@ -19,7 +19,35 @@ resource "docker_image" "actual" {
 
 # Create a container
 resource "docker_container" "actual" {
-  image = docker_image.actual.image_id
-  name  = "actual"
+  image   = docker_image.actual.image_id
+  name    = "actual"
+  restart = "unless-stopped"
+
+  ports {
+    internal = 5006
+    external = 8443
+  }
+
+  env = [
+    "ACTUAL_HTTPS_KEY=/data/key.key",
+    "ACTUAL_HTTPS_CERT=/data/cert.crt",
+    # Uncomment and add other environment variables as needed
+    # "ACTUAL_UPLOAD_FILE_SYNC_SIZE_LIMIT_MB=20",
+    # "ACTUAL_UPLOAD_SYNC_ENCRYPTED_FILE_SYNC_SIZE_LIMIT_MB=50",
+    # "ACTUAL_UPLOAD_FILE_SIZE_LIMIT_MB=20"
+  ]
+
+  volumes {
+    container_path = "/data"
+    host_path      = "/srv/actual-data"
+  }
+  volumes {
+    container_path = "/data/cert.crt"
+    host_path      = "/srv/actual-data/cert.crt"
+  }
+  volumes {
+    container_path = "/data/key.key"
+    host_path      = "/srv/actual-data/key.key"
+  }
 }
 

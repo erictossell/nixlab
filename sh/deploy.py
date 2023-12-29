@@ -4,6 +4,7 @@ import time
 import logging
 import platform
 
+
 # Initialize logging
 logging.basicConfig(
     filename="sh/deploy.log",

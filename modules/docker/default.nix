@@ -17,4 +17,9 @@
   # User permissions 
   users.users.${user}.extraGroups = [ "docker" ];
 
+  # Enable ports for Docker Swarm
+  #networking.firewall= {
+  #  allowedTCPPorts = [ 2377 7946 ];
+  #  allowedUDPPorts = [ 4789 7946 ];
+  #};
 }

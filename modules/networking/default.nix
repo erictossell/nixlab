@@ -27,9 +27,6 @@
 	};
 	nameservers = [ "8.8.8.8" "8.8.4.4" ];
 
-	# Enable ports for Docker Swarm
-	firewall.allowedTCPPorts = [ 2377 7946 ];
-	firewall.allowedUDPPorts = [ 4789 7946 ];
   };
 
 }

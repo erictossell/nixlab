@@ -31,12 +31,14 @@ def run_ssh_command(server, command, ssh_options):
 
         output = subprocess.check_output(full_command, universal_newlines=True)
         duration = time.time() - start_time
-        logging.info(f"Successfully executed on {server} in {duration:.2f} seconds.")
+        logging.info(
+            f"Successfully executed '{command}' on {server} in {duration:.2f} seconds."
+        )
         return server, output, None
     except subprocess.CalledProcessError as e:
         duration = time.time() - start_time
         logging.error(
-            f"Failed executing on {server} in {duration:.2f} seconds. Error: {e}"
+            f"Failed executing '{command}' on {server} in {duration:.2f} seconds. Error: {e}"
         )
         return server, None, e
 
@@ -64,12 +66,18 @@ with ThreadPoolExecutor(max_workers=len(servers)) as executor:
         for future in as_completed(futures):
             server = futures[future]
             try:
-                result = future.result()
-                # Handle the result (log, print, etc.)
+                (
+                    server,
+                    output,
+                    error,
+                ) = (
+                    future.result()
+                )  # Ensure this matches the return values of run_ssh_command
+                results.append((server, output, error))
             except Exception as exc:
                 logging.error(f"{server} generated an exception: {exc}")
+                results.append((server, None, exc))
             finally:
-                # Update progress after each task completion
                 progress.update(1)
 
 # Sort results based on the order of servers and print/output them

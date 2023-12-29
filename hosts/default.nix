@@ -15,6 +15,13 @@
     btop
     vim
   ];
+  
+  security.sudo.wheelNeedsPassword = false;
+
+  security.sudo.extraConfig = ''
+eriim ALL=(ALL:ALL) NOPASSWD: /run/current-system/sw/bin/nixos-rebuild switch --flake 'github:erictossell/nix-pi-lab'
+'';
+
 
   system.stateVersion = "23.11";
 }

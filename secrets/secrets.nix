@@ -9,7 +9,4 @@ in
 {
   "wireless.age".publicKeys = users ++ systems;
   "tailscale.age".publicKeys = users ++ systems;
-  "firefly_env.age".publicKeys = [ eriim ] ++ [ nixboard] ;
-  "firefly_db.age".publicKeys = [ eriim ] ++ [ nixboard ];
-
 }

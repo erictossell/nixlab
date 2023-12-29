@@ -79,6 +79,7 @@ with ThreadPoolExecutor(max_workers=len(servers)) as executor:
                 results.append((server, None, exc))
             finally:
                 progress.update(1)
+
 # Sort results based on the order of servers and print/output them
 results.sort(key=lambda x: servers.index(x[0]))
 for server, output, error in results:

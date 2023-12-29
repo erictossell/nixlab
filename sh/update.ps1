@@ -3,7 +3,7 @@ $servers = @("192.168.2.195", "192.168.2.196", "192.168.2.197")
 
 # Command to execute
 $clean = "nix-collect-garbage -d"
-$command = "sudo nixos-rebuild switch --flake github:erictossell/nix-pi-lab"
+$command = "sudo nixos-rebuild switch --flake github:erictossell/nix-pi-lab/tree/dev"
 
 # SSH Options
 $sshOptions = "-p 2973"

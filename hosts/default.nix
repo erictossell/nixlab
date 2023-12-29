@@ -16,11 +16,7 @@
     vim
   ];
   
-  security.sudo.wheelNeedsPassword = false;
-
-#  security.sudo.extraConfig = ''
-#eriim ALL=(ALL:ALL) NOPASSWD: /run/current-system/sw/bin/nixos-rebuild switch --flake 'github:erictossell/nix-pi-lab'
-#'';
+  #security.sudo.wheelNeedsPassword = false;
 
 
   system.stateVersion = "23.11";

@@ -9,7 +9,7 @@ There are three different raspberry-pi devices managed in this repository and a 
 | `nixcube` | 1GB Raspberry Pi 3b |
 | `live-image` | Installation media with SSH configured |
 
-After a device is installed and connected to the internet either via ethernet or by configuring a wireless connection each device assumes it's role in the `docker swarm` with a simple rebuild.
+After a device is installed and connected to the internet either via ethernet or by configuring a wireless connection each device assumes it's role in the cluster.
 
 All deployments of this repository are managed from an external deployment machine in a single action (ie my desktop, or a github action runner) with the custom deploy scripts under `sh/`.
 
@@ -23,5 +23,5 @@ All commands are from the perspective of the `cwd` of the `flake.nix`.
 
 | Command | Action |
 | --- | --- |
-| `python deploy.py` | Deploy the update configurations to all devices over `SSH` |
+| `python sh/dep.py --command "ls"` | Run any command over SSH accross all devices |
 

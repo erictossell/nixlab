@@ -16,8 +16,7 @@
     vim
   ];
   
-  #security.sudo.wheelNeedsPassword = false;
-
+  security.sudo.wheelNeedsPassword = false;
 
   system.stateVersion = "23.11";
 }

@@ -12,7 +12,7 @@ $sshOptions = "-p 2973"
 foreach ($server in $servers) {
     Write-Host "Executing on $server"
     ssh $sshOptions eriim@$server $clean
-    ssh $sshOptions eriim@$server $command
+    ssh $sshOptions eriim@$server $command_dev
 }
 
 Write-Host "Execution completed on all servers."

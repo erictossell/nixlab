@@ -5,7 +5,7 @@ SERVERS=("192.168.2.195" "192.168.2.196" "192.168.2.197")
 
 # Command to execute
 COMMAND="sudo nixos-rebuild switch --flake github:erictossell/nix-pi-lab"
-
+COMMAND_DEV="sudo nixos-rebuild switch --flake github:erictossell/nix-pi-lab/tree/dev"
 CLEAN="nix-collect-gargage -d"
 
 # SSH Options

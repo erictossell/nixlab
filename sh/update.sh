@@ -6,7 +6,6 @@ SERVERS=("192.168.2.195" "192.168.2.196" "192.168.2.197")
 # Default commands
 DEFAULT_COMMAND="sudo nixos-rebuild switch --flake github:erictossell/nix-pi-lab"
 
-
 # SSH Options
 SSH_OPTIONS="-p 2973"
 

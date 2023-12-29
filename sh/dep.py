@@ -31,12 +31,14 @@ def run_ssh_command(server, command, ssh_options):
 
         output = subprocess.check_output(full_command, universal_newlines=True)
         duration = time.time() - start_time
-        logging.info(f"Successfully executed on {server} in {duration:.2f} seconds.")
+        logging.info(
+            f"Successfully executed '{command}' on {server} in {duration:.2f} seconds."
+        )
         return server, output, None
     except subprocess.CalledProcessError as e:
         duration = time.time() - start_time
         logging.error(
-            f"Failed executing on {server} in {duration:.2f} seconds. Error: {e}"
+            f"Failed executing '{command}' on {server} in {duration:.2f} seconds. Error: {e}"
         )
         return server, None, e
 

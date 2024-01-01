@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 results/*
 .terraform/
 .terraform.*
+=======
+>>>>>>> f80ad3f (Removed log)
 *.log

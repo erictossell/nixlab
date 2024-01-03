@@ -1,4 +1,9 @@
+
 results/*
 .terraform/
 .terraform.*
+*.tfstate
+*.tfstate.*
+
+
 *.log

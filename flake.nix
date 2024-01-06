@@ -30,8 +30,6 @@
           ./modules/rpi/4
           ./modules/samba-server
 	  ./modules/docker
-	  ./modules/k3s
-	  ./modules/k3s/rpi.nix
         ];
       };#nixbox
 
@@ -49,8 +47,6 @@
           ./.
           ./modules/rpi/4
 	  ./modules/docker
-          ./modules/k3s/agent.nix
-	  ./modules/k3s/rpi.nix
         ];
       };#nixboard
 
@@ -68,8 +64,6 @@
           ./.
           ./modules/rpi/3
 	  ./modules/docker
-          ./modules/k3s/agent.nix
-	  ./modules/k3s/rpi.nix
         ];
       };#nixcube
       

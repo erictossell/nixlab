@@ -12,7 +12,7 @@
   };
 
   outputs = { self, nixpkgs, agenix, ... } @ attrs:{
-<<<<<<< HEAD
+
     nixosConfigurations = { 
 
       nixbox =
@@ -34,58 +34,6 @@
 	  ./modules/k3s/rpi.nix
         ];
       };#nixbox
-=======
-    nixosConfigurations.nixbox = nixpkgs.lib.nixosSystem {
-      system = "aarch64-linux";
-      specialArgs = {
-        user = "eriim";
-        hostName = "nixbox";
-        address = "10.0.0.195";
-        SSID = "Rogers13";
-        SSIDpass = "Summertime4U!";
-        interface = "wlan0";
-      } // attrs ;
-      modules = [
-            ./.       
-            ./modules/rpi4_core
-            ./modules/samba-server
-            ./modules/nextcloud            
-      ];
-    }; #nixbox
-
-    nixosConfigurations.nixboard = nixpkgs.lib.nixosSystem {
-      system = "aarch64-linux";
-      specialArgs = {
-        user = "eriim";
-        hostName = "nixboard";
-        address = "10.0.0.196";
-        SSID = "Rogers13";
-        SSIDpass = "Summertime4U!";
-        interface = "wlan0";
-      } // attrs;
-      modules = [       
-            ./.
-            ./modules/rpi4_core
-            ./modules/postgres
-      ];
-    }; #nixboard
-    
-    nixosConfigurations.nixcube = nixpkgs.lib.nixosSystem {
-      system = "aarch64-linux";
-      specialArgs = {
-        user = "eriim";
-        hostName = "nixcube";
-        address = "10.0.0.197";
-        SSID = "Rogers13";
-        SSIDpass = "Summertime4U!";
-        interface = "wlan0";
-      } // attrs;
-      modules = [       
-            ./.
-            ./modules/rpi3_core      
-      ];
-    }; #nixcube
->>>>>>> 241a050 (russh config.json)
 
       nixboard =
       let system = "aarch64-linux";
@@ -124,6 +72,22 @@
 	  ./modules/k3s/rpi.nix
         ];
       };#nixcube
+      
+      terminus = 
+      let system = "x86_64-linux";
+      in nixpkgs.lib.nixosSystem {
+        specialArgs = {
+          hostName = "terminus";      
+	  user = "root";
+          inherit system;
+	} // attrs;
+        modules = [       
+          ./hosts
+          ./modules/aws
+	  ./users/root.nix
+        ];
+      };#nixcube
+
 
       live-image = 
       let system = "aarch64-linux";

@@ -7,8 +7,8 @@
     enable = true;
     liveRestore = false;
     autoPrune = {
-    	enable = true;
-	dates =  "weekly" ;
+      enable = true;
+      dates = "weekly";
     };
     extraOptions = ''
       # Add extra options here

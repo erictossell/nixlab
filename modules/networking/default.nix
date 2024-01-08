@@ -5,27 +5,27 @@
   ];
 
   age.secrets."wireless.env" = {
-	file = ../../secrets/wireless.age;
-	path = "/run/secrets/wireless.env";
+    file = ../../secrets/wireless.age;
+    path = "/run/secrets/wireless.env";
   };
 
   networking = {
-	hostName = hostName;
-	useDHCP = false;
-	wireless = {
-		enable = true;
-		environmentFile = "/run/secrets/wireless.env";
-		networks = { "@SSID@".psk = "@SSIDpass@"; };
-	};
-	interfaces.${interface}.ipv4.addresses = [{
-		address = address;
-		prefixLength = 24;
-	}];
-	defaultGateway = {
-		address = "192.168.2.1";
-		interface = interface;
-	};
-	nameservers = [ "8.8.8.8" "8.8.4.4" ];
+    inherit hostName;
+    useDHCP = false;
+    wireless = {
+      enable = true;
+      environmentFile = "/run/secrets/wireless.env";
+      networks = { "@SSID@".psk = "@SSIDpass@"; };
+    };
+    interfaces.${interface}.ipv4.addresses = [{
+      inherit address;
+      prefixLength = 24;
+    }];
+    defaultGateway = {
+      address = "192.168.2.1";
+      inherit interface;
+    };
+    nameservers = [ "8.8.8.8" "8.8.4.4" ];
 
   };
 

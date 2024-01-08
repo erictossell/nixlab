@@ -1,4 +1,4 @@
-{ lib, pkgs, user,  ... }:
+{ lib, pkgs, user, ... }:
 {
   networking.firewall.allowedTCPPorts = [ 9731 ];
   services.postgresql = {
@@ -31,7 +31,7 @@
       log_destination = lib.mkForce "syslog";
     };
   };
-  
+
   services.postgresqlBackup = {
     enable = true;
   };

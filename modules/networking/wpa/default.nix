@@ -1,4 +1,4 @@
-{ interface, ...}:
+{ interface, ... }:
 {
   networking.wireless = {
     enable = true;

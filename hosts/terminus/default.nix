@@ -1,7 +1,7 @@
-{system, nixpkgs, ...}:
+{ system, nixpkgs, ... }:
 {
   nixpkgs.hostPlatform = {
     system = "${system}";
-    };
+  };
 
 }

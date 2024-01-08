@@ -7,105 +7,127 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.darwin.follows = "";
-    };#agenix
+    }; #agenix
 
   };
 
-  outputs = { self, nixpkgs, agenix, ... } @ attrs:{
+  outputs = { self, nixpkgs, agenix, ... } @ attrs:
+    let
+      supportedSystems = [ "x86_64-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin" ];
 
-    nixosConfigurations = { 
+      # Helper function to generate an attrset '{ x86_64-linux = f "x86_64-linux"; ... }'.
+      forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
 
-      nixbox =
-      let system = "aarch64-linux";
-      in nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          user = "eriim";
-          hostName = "nixbox";
-          address = "192.168.2.195";
-          interface = "wlan0";
-          inherit system;
-	} // attrs ;
-        modules = [
-          ./.
-          ./modules/rpi/4
-          ./modules/samba-server
-	  ./modules/docker
-        ];
-      };#nixbox
+      # Nixpkgs instantiated for supported system types.
+      nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; });
+    in
+    {
 
-      nixboard =
-      let system = "aarch64-linux";
-      in nixpkgs.lib.nixosSystem {
-        specialArgs = {
-	  user = "eriim";
-          hostName = "nixboard";
-          address = "192.168.2.196";
-          interface = "wlan0";
-	  inherit system;
-        } // attrs;
-        modules = [       
-          ./.
-          ./modules/rpi/4
-	  ./modules/docker
-        ];
-      };#nixboard
+      nixosConfigurations = {
 
-      nixcube = 
-      let system = "aarch64-linux";
-      in nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          user = "eriim";
-          hostName = "nixcube";
-          address = "192.168.2.197";
-          interface = "wlan0";
-          inherit system;
-	} // attrs;
-        modules = [       
-          ./.
-          ./modules/rpi/3
-	  ./modules/docker
-        ];
-      };#nixcube
-      
-      terminus = 
-      let system = "x86_64-linux";
-      in nixpkgs.lib.nixosSystem {
-        specialArgs = {
-          hostName = "terminus";      
-	  user = "root";
-          inherit system;
-	} // attrs;
-        modules = [       
-          ./hosts
-          ./modules/aws
-	  ./users/root.nix
-        ];
-      };#nixcube
+        nixbox =
+          let system = "aarch64-linux";
+          in nixpkgs.lib.nixosSystem {
+            specialArgs = {
+              user = "eriim";
+              hostName = "nixbox";
+              address = "192.168.2.195";
+              interface = "wlan0";
+              inherit system;
+            } // attrs;
+            modules = [
+              ./.
+              ./modules/rpi/4
+              ./modules/samba-server
+              ./modules/docker
+            ];
+          }; #nixbox
+
+        nixboard =
+          let system = "aarch64-linux";
+          in nixpkgs.lib.nixosSystem {
+            specialArgs = {
+              user = "eriim";
+              hostName = "nixboard";
+              address = "192.168.2.196";
+              interface = "wlan0";
+              inherit system;
+            } // attrs;
+            modules = [
+              ./.
+              ./modules/rpi/4
+              ./modules/docker
+            ];
+          }; #nixboard
+
+        nixcube =
+          let system = "aarch64-linux";
+          in nixpkgs.lib.nixosSystem {
+            specialArgs = {
+              user = "eriim";
+              hostName = "nixcube";
+              address = "192.168.2.197";
+              interface = "wlan0";
+              inherit system;
+            } // attrs;
+            modules = [
+              ./.
+              ./modules/rpi/3
+              ./modules/docker
+            ];
+          }; #nixcube
+
+        terminus =
+          let system = "x86_64-linux";
+          in nixpkgs.lib.nixosSystem {
+            specialArgs = {
+              hostName = "terminus";
+              user = "root";
+              inherit system;
+            } // attrs;
+            modules = [
+              ./hosts
+              ./modules/aws
+              ./users/root.nix
+            ];
+          }; #nixcube
 
 
-      live-image = 
-      let system = "aarch64-linux";
-      in nixpkgs.lib.nixosSystem {
-        system = system;
-        specialArgs = {
-	  user = "nixos";
-	  hostName = "live-image";
-	  interface = "wlan0";
-	  inherit system;
-	} // attrs;
-	modules = [
-          ./hosts
-	  ./users
-	  ./modules/ssh
-	];
-      };#live-image
+        live-image =
+          let system = "aarch64-linux";
+          in nixpkgs.lib.nixosSystem {
+            inherit system;
+            specialArgs = {
+              user = "nixos";
+              hostName = "live-image";
+              interface = "wlan0";
+              inherit system;
+            } // attrs;
+            modules = [
+              ./hosts
+              ./users
+              ./modules/ssh
+            ];
+          }; #live-image
 
-    };#configs
+      }; #configs
 
-    templates.default = {
-	path = ./.;
-	description = "A NixOS Flake for raspberry pi devices";
-    };#templates
+      devShells = forAllSystems (system:
+        let
+          pkgs = nixpkgsFor.${system};
+        in
+        {
+          default = pkgs.mkShell {
+            buildInputs = with pkgs; [ statix ];
+          };
+        });
 
-  };#outputs
+      templates.default = {
+        path = ./.;
+        description = "A NixOS Flake for raspberry pi devices";
+      }; #templates
+
+      formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;
+
+    }; #outputs
 }#flake

@@ -92,7 +92,6 @@
             ];
           }; #nixcube
 
-
         live-image =
           let system = "aarch64-linux";
           in nixpkgs.lib.nixosSystem {

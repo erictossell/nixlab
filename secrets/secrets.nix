@@ -5,8 +5,12 @@ let
   nixbox = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAhKvn+by6FngLSbbTdXKPAirdEAaSHnK8IQGXyXF/jQ";
   nixcube = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAgy9a9W8cIxkyylPdq4uRZKGSmZfPWPu+lbhS4XdDQy";
   systems = [ nixboard nixbox nixcube ];
+  soft_serve = [ nixbox eriim ];
 in
 {
   "wireless.age".publicKeys = users ++ systems;
   "tailscale.age".publicKeys = users ++ systems;
+
+  "soft_serve_host.age".publicKeys = soft_serve;
+  "soft_serve_client.age".publicKeys = soft_serve;
 }

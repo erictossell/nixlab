@@ -1,10 +1,10 @@
 {
 
-  age.secrets."host_key" = {
+  age.secrets."soft_serve_host" = {
     file = ../../secrets/soft_serve_host.age;
     path = "/run/secrets/soft_serve_host";
   };
-  age.secrets."client_key" = {
+  age.secrets."soft_serve_client" = {
     file = ../../secrets/soft_serve_client.age;
     path = "/run/secrets/soft_serve_client";
   };
@@ -15,7 +15,6 @@
       log_format = "text";
       ssh = {
         listen_addr = ":2973";
-        public_url = "ssh://git.eriimhub";
         key_path = "/run/secrets/soft_serve_host";
         client_key_path = "/run/secrets/soft_serve_client";
         max_timeout = 10;
@@ -29,7 +28,6 @@
       };
       http = {
         listen_addr = ":443";
-        public_url = "http://git.eriimhub";
       };
       stats = {
         listen_addr = "localhost:23233";

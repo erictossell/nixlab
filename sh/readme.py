@@ -28,17 +28,25 @@ def directory_tree(path):
     return "\n".join(tree)
 
 
-def generate_readme(username, repo_name, path):
+def generate_readme(
+    username, repo_name, path, markdown_prefix_file="docs/readme-header.md"
+):
     """Generate README.md content."""
-    flake_show_output = run_command(f"nix flake show github:{username}/{repo_name}")
+    existing_content = ""
+    try:
+        with open(markdown_prefix_file, "r") as f:
+            existing_content = f.read()
+    except FileNotFoundError:
+        print("%s not found, creating new file.", markdown_prefix_file)
+
+    flake_show_output = run_command(
+        f"nix flake show github:{username}/{repo_name} --all-systems"
+    )
     dir_tree = directory_tree(path)
 
-    readme_content = f"""### nix-pi-lab
-
-A basic configuration for 3 different raspberry-pi devices running NixOS.
-- A live image for flashing SSH access
-- Wireless network configuration with Agenix encrypted secrets
-- Docker Swarm Cluster, managed by terraform
+    readme_content = (
+        existing_content
+        + f"""
 
 `nix flake show`
 
@@ -53,6 +61,7 @@ A basic configuration for 3 different raspberry-pi devices running NixOS.
 ```
 
 """
+    )
 
     return readme_content
 

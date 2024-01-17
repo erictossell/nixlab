@@ -11,7 +11,7 @@ A basic configuration for 3 different raspberry-pi devices running NixOS.
 `nix flake show`
 
 ```nix
-github:erictossell/nix-pi-lab/b21f79340dbec764db62c8e72ee0e6dfde49fb91
+git+file:///home/runner/work/nix-pi-lab/nix-pi-lab?shallow=1
 ├───devShells
 │   ├───aarch64-linux
 │   │   └───default: development environment 'nix-shell'

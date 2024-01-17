@@ -33,26 +33,26 @@ def generate_readme(username, repo_name, path):
     flake_show_output = run_command(f"nix flake show github:{username}/{repo_name}")
     dir_tree = directory_tree(path)
 
-    readme_content = f"""###nix-pi-lab
+    readme_content = f"""### nix-pi-lab
 
 A basic configuration for 3 different raspberry-pi devices running NixOS.
+- A live image for flashing SSH access
+- Wireless network configuration with Agenix encrypted secrets
+- Docker Swarm Cluster, managed by terraform
 
-    - A live image for flashing SSH access
+`nix flake show`
 
-    - Wireless network configuration with Agenix encrypted secrets
-
-    - Docker Swarm Cluster, managed by terraform
-
-
-    `nix flake show`
     ```nix
     {flake_show_output}
     ```
-    `tree`
+
+`Directory Tree`
+
     ```bash
     {dir_tree}
     ```
     """
+
     return readme_content
 
 

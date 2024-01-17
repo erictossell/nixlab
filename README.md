@@ -1,15 +1,12 @@
-###nix-pi-lab
+### nix-pi-lab
 
 A basic configuration for 3 different raspberry-pi devices running NixOS.
+- A live image for flashing SSH access
+- Wireless network configuration with Agenix encrypted secrets
+- Docker Swarm Cluster, managed by terraform
 
-    - A live image for flashing SSH access
+`nix flake show`
 
-    - Wireless network configuration with Agenix encrypted secrets
-
-    - Docker Swarm Cluster, managed by terraform
-
-
-    `nix flake show`
     ```nix
     github:erictossell/nix-pi-lab/54ae93d918beaceffcbacf1322da18d9b273f3d9
 ├───devShells
@@ -33,7 +30,9 @@ A basic configuration for 3 different raspberry-pi devices running NixOS.
     └───default: template: A NixOS Flake for raspberry pi devices
 
     ```
-    `tree`
+
+`Directory Tree`
+
     ```bash
     ./
     docs/

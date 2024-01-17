@@ -1,21 +1,20 @@
-### nix-pi-lab
+## nix-pi-lab
 
 A basic configuration for 3 different raspberry-pi devices running NixOS.
 - A live image for flashing SSH access
 - Wireless network configuration with Agenix encrypted secrets
 - Docker Swarm Cluster, managed by terraform
 
+#### Repository structure:
+
+
 `nix flake show`
 
 ```nix
-github:erictossell/nix-pi-lab/54ae93d918beaceffcbacf1322da18d9b273f3d9
+git+file:///home/runner/work/nix-pi-lab/nix-pi-lab?shallow=1
 ├───devShells
-│   ├───aarch64-darwin
-│   │   └───default omitted (use '--all-systems' to show)
 │   ├───aarch64-linux
-│   │   └───default omitted (use '--all-systems' to show)
-│   ├───x86_64-darwin
-│   │   └───default omitted (use '--all-systems' to show)
+│   │   └───default: development environment 'nix-shell'
 │   └───x86_64-linux
 │       └───default: development environment 'nix-shell'
 ├───formatter
@@ -27,7 +26,7 @@ github:erictossell/nix-pi-lab/54ae93d918beaceffcbacf1322da18d9b273f3d9
 │   ├───nixcube: NixOS configuration
 │   └───terminus: NixOS configuration
 └───templates
-    └───default: template: A NixOS Flake for raspberry pi devices
+    └───default: template: A NixOS Flake for raspberry pi devices running docker or podman.
 
 ```
 

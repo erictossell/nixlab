@@ -13,7 +13,7 @@
 
   outputs = { self, nixpkgs, agenix, ... } @ attrs:
     let
-      supportedSystems = [ "x86_64-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin" ];
+      supportedSystems = [ "x86_64-linux" "aarch64-linux" ];
 
       # Helper function to generate an attrset '{ x86_64-linux = f "x86_64-linux"; ... }'.
       forAllSystems = nixpkgs.lib.genAttrs supportedSystems;
@@ -40,7 +40,6 @@
               ./modules/rpi/4
               ./modules/samba-server
               ./modules/docker
-              ./modules/soft-serve
             ];
           }; #nixbox
 
@@ -118,13 +117,13 @@
         in
         {
           default = pkgs.mkShell {
-            buildInputs = with pkgs; [ statix ];
+            buildInputs = with pkgs; [ python3 statix ];
           };
         });
 
       templates.default = {
         path = ./.;
-        description = "A NixOS Flake for raspberry pi devices";
+        description = "A NixOS Flake for raspberry pi devices running docker or podman.";
       }; #templates
 
       formatter.x86_64-linux = nixpkgs.legacyPackages.x86_64-linux.nixpkgs-fmt;

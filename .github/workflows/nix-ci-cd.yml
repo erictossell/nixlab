@@ -37,7 +37,7 @@ jobs:
       with:
         python-version: '3.x'
 
-    - name: Generate Readme"
+    - name: Generate Readme
       run: python3 sh/readme.py
 
     - name: Commit

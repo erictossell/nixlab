@@ -39,9 +39,7 @@ def generate_readme(
     except FileNotFoundError:
         print("%s not found, creating new file.", markdown_prefix_file)
 
-    flake_show_output = run_command(
-        f"nix flake show github:{username}/{repo_name} --all-systems"
-    )
+    flake_show_output = run_command(f"nix flake show . --all-systems")
     dir_tree = directory_tree(path)
 
     readme_content = (

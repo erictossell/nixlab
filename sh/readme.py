@@ -42,16 +42,17 @@ A basic configuration for 3 different raspberry-pi devices running NixOS.
 
 `nix flake show`
 
-    ```nix
-    {flake_show_output}
-    ```
+```nix
+{flake_show_output}
+```
 
 `Directory Tree`
 
-    ```bash
-    {dir_tree}
-    ```
-    """
+```bash
+{dir_tree}
+```
+
+"""
 
     return readme_content
 

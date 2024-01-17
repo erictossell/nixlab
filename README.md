@@ -7,8 +7,8 @@ A basic configuration for 3 different raspberry-pi devices running NixOS.
 
 `nix flake show`
 
-    ```nix
-    github:erictossell/nix-pi-lab/54ae93d918beaceffcbacf1322da18d9b273f3d9
+```nix
+github:erictossell/nix-pi-lab/54ae93d918beaceffcbacf1322da18d9b273f3d9
 ├───devShells
 │   ├───aarch64-darwin
 │   │   └───default omitted (use '--all-systems' to show)
@@ -29,12 +29,12 @@ A basic configuration for 3 different raspberry-pi devices running NixOS.
 └───templates
     └───default: template: A NixOS Flake for raspberry pi devices
 
-    ```
+```
 
 `Directory Tree`
 
-    ```bash
-    ./
+```bash
+./
     docs/
     hosts/
         live-image/
@@ -69,5 +69,5 @@ A basic configuration for 3 different raspberry-pi devices running NixOS.
     secrets/
     sh/
     users/
-    ```
-    
+```
+

@@ -13,7 +13,6 @@
     };
   };
   services.nginx.virtualHosts."${hostName}.nix" = {
-  addSSL = true;
   enableACME = false;
   forceSSL = true;
   sslCertificate = "/srv/grafana/cert.pem";

@@ -6,13 +6,13 @@
       server = {
         http_addr = "${address}";
 	http_port = 3001;
-        domain = "${hostName}.nix";
-	root_url = "https://${hostName}.nix/grafana/"; 
+        domain = "${hostName}";
+	root_url = "https://${hostName}/grafana/"; 
 	serve_from_sub_path = true;
       };
     };
   };
-  services.nginx.virtualHosts."${hostName}.nix" = {
+  services.nginx.virtualHosts."${hostName}" = {
   enableACME = false;
   forceSSL = true;
   sslCertificate = "/srv/grafana/cert.pem";

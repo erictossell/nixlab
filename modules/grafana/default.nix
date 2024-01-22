@@ -8,7 +8,7 @@
 	http_port = 3001;
         domain = "${hostName}";
 	root_url = "http://${hostName}/grafana/"; 
-	#serve_from_sub_path = true;
+	serve_from_sub_path = true;
       };
     };
   };

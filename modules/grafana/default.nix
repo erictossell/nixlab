@@ -12,14 +12,6 @@
       };
     };
   };
-  services.nginx.virtualHosts."graf.local" = {
-   addSSL = true;
-   enableACME = true;
-    locations."/grafana/" = {
-      proxyPass = "http://${toString config.services.grafana.settings.server.http_addr}:${toString config.services.grafana.settings.server.http_port}";
-      proxyWebsockets = true;
-      recommendedProxySettings = true;
-   };
-  };
+  networking.firewall.allowedTCPPorts = [ 3001 ];
 
 }

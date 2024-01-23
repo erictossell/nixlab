@@ -9,9 +9,13 @@
       inputs.darwin.follows = "";
     }; #agenix
 
+    backup = {
+      url = "./backup";
+      inputs.nixpkgs.follows = "nixpkgs";
+    }; #backup
   };
 
-  outputs = { self, nixpkgs, agenix, ... } @ attrs:
+  outputs = { self, nixpkgs, agenix, backup, ... } @ attrs:
     let
       supportedSystems = [ "x86_64-linux" "aarch64-linux" ];
 
@@ -57,9 +61,9 @@
               ./.
               ./modules/rpi/4
               ./modules/docker
-	      ./modules/grafana
-	      ./modules/nginx
-	      ./modules/tandoor
+              ./modules/grafana
+              ./modules/nginx
+              ./modules/tandoor
             ];
           }; #nixboard
 

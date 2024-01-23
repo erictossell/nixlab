@@ -13,4 +13,7 @@ in
 
   "soft_serve_host.age".publicKeys = soft_serve;
   "soft_serve_client.age".publicKeys = soft_serve;
+
+  "backblaze_api_id.age".publicKeys = users ++ systems;
+  "backblaze_api_key.age".publicKeys = users ++ systems;
 }

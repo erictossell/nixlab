@@ -23,6 +23,23 @@
         "type": "github"
       }
     },
+    "backup": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1,
+        "narHash": "sha256-kj3AOFqbvMp5GQyyi89AQArFm4bHa3aVC9fNXsJhERI=",
+        "path": "/nix/store/dbc0ja64gk8llaf2ipra9j2ld8c4n5qa-source/backup",
+        "type": "path"
+      },
+      "original": {
+        "path": "/nix/store/dbc0ja64gk8llaf2ipra9j2ld8c4n5qa-source/backup",
+        "type": "path"
+      }
+    },
     "home-manager": {
       "inputs": {
         "nixpkgs": [
@@ -63,6 +80,7 @@
     "root": {
       "inputs": {
         "agenix": "agenix",
+        "backup": "backup",
         "nixpkgs": "nixpkgs"
       }
     },

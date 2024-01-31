@@ -1,4 +1,0 @@
-/home/eriim/repos,repos
-/home/eriim/docs,docs
-/home/eriim/Pictures,Pictures
-/home/eriim/ISO,ISO-Repo

@@ -9,13 +9,9 @@
       inputs.darwin.follows = "";
     }; #agenix
 
-    backup = {
-      url = "./backup";
-      inputs.nixpkgs.follows = "nixpkgs";
-    }; #backup
   };
 
-  outputs = { self, nixpkgs, agenix, backup, ... } @ attrs:
+  outputs = { self, nixpkgs, agenix, ... } @ attrs:
     let
       supportedSystems = [ "x86_64-linux" "aarch64-linux" ];
 

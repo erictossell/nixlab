@@ -57,6 +57,9 @@
               ./.
               ./modules/rpi/4
               ./modules/docker
+              ./modules/grafana
+              ./modules/nginx
+              ./modules/tandoor
             ];
           }; #nixboard
 

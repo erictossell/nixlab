@@ -3,7 +3,7 @@
 A basic configuration for 3 different raspberry-pi devices running NixOS.
 - A live image for flashing SSH access
 - Wireless network configuration with Agenix encrypted secrets
-- Docker Swarm Cluster, managed by terraform
+- Docker managed by terraform
 
 #### Repository structure:
 
@@ -11,7 +11,7 @@ A basic configuration for 3 different raspberry-pi devices running NixOS.
 `nix flake show`
 
 ```nix
-git+file:///home/runner/work/nix-pi-lab/nix-pi-lab?shallow=1
+git+file:///home/runner/work/nixlab/nixlab?shallow=1
 ├───devShells
 │   ├───aarch64-linux
 │   │   └───default: development environment 'nix-shell'
@@ -47,10 +47,11 @@ git+file:///home/runner/work/nix-pi-lab/nix-pi-lab?shallow=1
         boot/
         core/
         docker/
+        grafana/
         k3s/
-        network/
         networking/
             wpa/
+        nginx/
         nix/
         pkgs/
         podman/
@@ -63,6 +64,7 @@ git+file:///home/runner/work/nix-pi-lab/nix-pi-lab?shallow=1
         rpi4_core/
         samba-server/
         ssh/
+        tandoor/
         x86_64/
             boot/
     secrets/

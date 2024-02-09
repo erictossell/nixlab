@@ -31,8 +31,8 @@
             specialArgs = {
               user = "eriim";
               hostName = "nixbox";
-              address = "192.168.2.195";
-              interface = "wlan0";
+              address = "192.168.2.3";
+              interface = "end0";
               inherit system;
             } // attrs;
             modules = [
@@ -40,10 +40,28 @@
               ./modules/rpi/4
               ./modules/samba-server
               ./modules/docker
+	      ./modules/tandoor
             ];
           }; #nixbox
 
-        nixboard =
+        nixcube =
+          let system = "aarch64-linux";
+          in nixpkgs.lib.nixosSystem {
+            specialArgs = {
+              user = "eriim";
+              hostName = "nixcube";
+              address = "192.168.2.4";
+              interface = "enu1u1";
+              inherit system;
+            } // attrs;
+            modules = [
+              ./.
+              ./modules/rpi/3
+              ./modules/docker
+            ];
+          }; #nixcube
+	
+	nixboard =
           let system = "aarch64-linux";
           in nixpkgs.lib.nixosSystem {
             specialArgs = {
@@ -62,23 +80,6 @@
               ./modules/tandoor
             ];
           }; #nixboard
-
-        nixcube =
-          let system = "aarch64-linux";
-          in nixpkgs.lib.nixosSystem {
-            specialArgs = {
-              user = "eriim";
-              hostName = "nixcube";
-              address = "192.168.2.197";
-              interface = "wlan0";
-              inherit system;
-            } // attrs;
-            modules = [
-              ./.
-              ./modules/rpi/3
-              ./modules/docker
-            ];
-          }; #nixcube
 
         terminus =
           let system = "x86_64-linux";

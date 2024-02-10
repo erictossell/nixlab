@@ -2,8 +2,8 @@
 {
   services.tandoor-recipes = {
     enable = true;
-    port = 3002;
-    address = "127.0.0.1";
+    port = 8081;
+    address = address;
   };
-  networking.firewall.allowedTCPPorts = [ 3002 ];
+  networking.firewall.allowedTCPPorts = [ 8081 ];
 }

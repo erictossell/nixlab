@@ -40,7 +40,7 @@
               ./modules/rpi/4
               ./modules/samba-server
               ./modules/docker
-	      ./modules/tandoor
+              ./modules/tandoor
             ];
           }; #nixbox
 
@@ -60,8 +60,8 @@
               ./modules/docker
             ];
           }; #nixcube
-	
-	nixboard =
+
+        nixboard =
           let system = "aarch64-linux";
           in nixpkgs.lib.nixosSystem {
             specialArgs = {

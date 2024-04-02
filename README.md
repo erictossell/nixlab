@@ -34,6 +34,7 @@ git+file:///home/runner/work/nixlab/nixlab?shallow=1
 
 ```bash
 ./
+    disko/
     docs/
     hosts/
         live-image/

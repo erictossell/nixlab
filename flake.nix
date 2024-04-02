@@ -50,7 +50,7 @@
             specialArgs = {
               user = "eriim";
               hostName = "nixcube";
-              address = "192.168.3.4";
+              address = "192.168.2.4";
               interface = "enu1u1";
               inherit system;
             } // attrs;
@@ -67,7 +67,7 @@
             specialArgs = {
               user = "eriim";
               hostName = "nixboard";
-              address = "192.168.2.196";
+              address = "192.168.2.7";
               interface = "wlan0";
               inherit system;
             } // attrs;

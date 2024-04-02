@@ -2,11 +2,10 @@ servers = ["nb.toss", "nc.toss"]
 
 [ssh_options]
 "nb.toss" = "-p 2973"
-#"192.168.2.196" = "-p 2973"
 "nc.toss" = "-p 2973"
+
 [users]
 "nb.toss" = "eriim"
-#"192.168.2.196" = "eriim"
 "nc.toss" = "eriim"
 
 

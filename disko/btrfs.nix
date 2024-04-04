@@ -3,7 +3,7 @@
     disk = {
       vdb = {
         type = "disk";
-        device = "/dev/sda"; # Adjusted to /dev/sda for VM scenario
+        device = "/dev/vda"; # Ensure this matches the intended device
         content = {
           type = "gpt";
           partitions = {
@@ -11,7 +11,7 @@
               priority = 1;
               name = "ESP";
               start = "1M";
-              end = "512M"; # Adjusted for a more standard ESP size
+              end = "550M"; # ESP partition size to 550M as per your script
               type = "EF00";
               content = {
                 type = "filesystem";
@@ -20,13 +20,14 @@
               };
             };
             root = {
-              size = "rest"; # Adjust size according to your disk layout and needs
+              size = "100%"; # Allocating the rest of the disk to the root partition, excluding ESP
               content = {
                 type = "btrfs";
-                extraArgs = [ "-f" ]; # Force, ensuring it's okay to overwrite
+                extraArgs = [ "-f" ]; # Override existing partition
                 subvolumes = {
-                  "/rootfs" = {
+                  "/root" = {
                     mountpoint = "/";
+                    mountOptions = [ "compress=zstd" ];
                   };
                   "/home" = {
                     mountOptions = [ "compress=zstd" ];
@@ -36,16 +37,10 @@
                     mountOptions = [ "compress=zstd" "noatime" ];
                     mountpoint = "/nix";
                   };
+                  # Swap subvolume setup
                   "/swap" = {
-                    mountpoint = "/.swapvol"; # Dedicated swap subvolume
-                  };
-                };
-
-                mountpoint = "/partition-root"; # Not typically needed as subvolumes are used
-                swap = {
-                  swapfile = {
-                    size = "2G"; # Adjusted to a more practical size
-                    path = "/.swapvol/swapfile"; # Explicitly define path within subvolume
+                      mountpoint = "/.swapvol";
+                      swap.swapfile.size = "2G";
                   };
                 };
               };
@@ -56,4 +51,3 @@
     };
   };
 }
-

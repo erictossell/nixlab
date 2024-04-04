@@ -11,7 +11,7 @@
       prefixLength = 24;
     }];
     defaultGateway = {
-      address = "192.168.3.1";
+      address = "192.168.2.1";
       inherit interface;
     };
   };

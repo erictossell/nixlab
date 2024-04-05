@@ -94,14 +94,32 @@
               ./users/root.nix
             ];
           }; #nixcube
+        
+	live-image-x86 =
+          let system = "x86_64-linux";
+          in nixpkgs.lib.nixosSystem {
+            inherit system;
+            specialArgs = {
+              user = "nixos";
+              hostName = "live-image-x86";
+              interface = "enp1s0";
+              inherit system;
+            } // attrs;
+            modules = [
+              ./hosts
+              ./users
+              ./modules/ssh
+            ];
+          }; #live-image
 
-        live-image =
+
+        live-image-aarch64 =
           let system = "aarch64-linux";
           in nixpkgs.lib.nixosSystem {
             inherit system;
             specialArgs = {
               user = "nixos";
-              hostName = "live-image";
+              hostName = "live-image-aarch";
               interface = "wlan0";
               inherit system;
             } // attrs;

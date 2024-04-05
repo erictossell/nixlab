@@ -7,7 +7,4 @@
     enable = true;
     authKeyFile = "/run/secrets/tailscale_key";
   };
-  services.openssh = {
-    enable = true;
-  };
 }

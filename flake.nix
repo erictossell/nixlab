@@ -40,7 +40,6 @@
               ./modules/rpi/4
               ./modules/samba-server
               ./modules/docker
-              ./modules/tandoor
             ];
           }; #nixbox
 

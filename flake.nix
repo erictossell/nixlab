@@ -59,6 +59,23 @@
               ./modules/docker
             ];
           }; #nixcube
+	
+	do =
+          let system = "x86_64-linux";
+          in nixpkgs.lib.nixosSystem {
+            inherit system;
+            specialArgs = {
+              user = "eriim";
+              hostName = "do";
+              inherit system;
+            } // attrs;
+            modules = [
+              ./hosts
+              ./users
+              ./modules/ssh
+            ];
+          }; #live-image
+
 
         nixboard =
           let system = "aarch64-linux";

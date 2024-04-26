@@ -2,7 +2,7 @@
 
 {
   # Ensure git is available
-  environment.systemPackages = with pkgs; [ git ];
+  environment.systemPackages = with pkgs; [ git coreutils ];
 
   systemd.services.clone-homepage = {
     description = "Clone GitHub repository to web directory";
@@ -12,7 +12,7 @@
       Type = "oneshot";
       RemainAfterExit = true;
       ExecStart = "${pkgs.git}/bin/git clone --depth 1 https://github.com/erictossell/homepage.git /var/www/homepage.eriim.dev/homepage";
-      ExecStartPre = "rm -rf /var/www/homepage.eriim.dev/homepage";
+      ExecStartPre = "${pkgs.coreutils}/bin/rm -rf /var/www/homepage.eriim.dev/homepage";
     };
   };
 

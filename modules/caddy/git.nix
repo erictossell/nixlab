@@ -11,7 +11,7 @@
     serviceConfig = {
       Type = "oneshot";
       RemainAfterExit = true;
-      ExecStart = "${pkgs.git}/bin/git clone --depth 1 https://github.com/username/repo.git /var/www/homepage.eriim.dev/homepage";
+      ExecStart = "${pkgs.git}/bin/git clone --depth 1 https://github.com/erictossell/homepage.git /var/www/homepage.eriim.dev/homepage";
       ExecStartPre = "rm -rf /var/www/homepage.eriim.dev/homepage";
     };
   };

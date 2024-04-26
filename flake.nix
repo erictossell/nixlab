@@ -60,19 +60,20 @@
             ];
           }; #nixcube
 	
-	do =
+	nixos-do =
           let system = "x86_64-linux";
           in nixpkgs.lib.nixosSystem {
             inherit system;
             specialArgs = {
               user = "eriim";
-              hostName = "do";
+              hostName = "nixos-do";
               inherit system;
             } // attrs;
             modules = [
               ./hosts
               ./users
               ./modules/ssh
+	      ./modules/caddy
             ];
           }; #live-image
 

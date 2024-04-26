@@ -74,27 +74,9 @@
               ./.
               ./modules/rpi/4
               ./modules/docker
-              ./modules/grafana
-              ./modules/nginx
-              ./modules/tandoor
             ];
           }; #nixboard
 
-        terminus =
-          let system = "x86_64-linux";
-          in nixpkgs.lib.nixosSystem {
-            specialArgs = {
-              hostName = "terminus";
-              user = "root";
-              inherit system;
-            } // attrs;
-            modules = [
-              ./hosts
-              ./modules/aws
-              ./users/root.nix
-            ];
-          }; #nixcube
-        
 	live-image-x86 =
           let system = "x86_64-linux";
           in nixpkgs.lib.nixosSystem {
@@ -111,7 +93,6 @@
               ./modules/ssh
             ];
           }; #live-image
-
 
         live-image-aarch64 =
           let system = "aarch64-linux";

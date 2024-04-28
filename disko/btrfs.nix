@@ -39,8 +39,8 @@
                   };
                   # Swap subvolume setup
                   "/swap" = {
-                      mountpoint = "/.swapvol";
-                      swap.swapfile.size = "2G";
+                    mountpoint = "/.swapvol";
+                    swap.swapfile.size = "2G";
                   };
                 };
               };

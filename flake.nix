@@ -22,6 +22,12 @@
       nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; });
     in
     {
+      packages = forAllSystems (system:
+        let pkgs = nixpkgsFor.${system};
+        in
+        {
+          do-image = (import ./pkgs/images/do.nix { inherit pkgs; });
+        });
 
       nixosConfigurations = {
 
@@ -59,8 +65,8 @@
               ./modules/docker
             ];
           }; #nixcube
-	
-	nixos-do =
+
+        nixos-do =
           let system = "x86_64-linux";
           in nixpkgs.lib.nixosSystem {
             inherit system;
@@ -73,10 +79,10 @@
               ./hosts
               ./users
               ./modules/ssh
-	      ./modules/caddy
+              ./modules/caddy
+              ./modules/fail2ban
             ];
-          }; #live-image
-
+          }; #nixos-do
 
         nixboard =
           let system = "aarch64-linux";
@@ -95,7 +101,7 @@
             ];
           }; #nixboard
 
-	live-image-x86 =
+        live-image-x86 =
           let system = "x86_64-linux";
           in nixpkgs.lib.nixosSystem {
             inherit system;

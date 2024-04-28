@@ -22,13 +22,6 @@
       nixpkgsFor = forAllSystems (system: import nixpkgs { inherit system; });
     in
     {
-      packages = forAllSystems (system:
-        let pkgs = nixpkgsFor.${system};
-        in
-        {
-          do-image = (import ./pkgs/images/do.nix { inherit pkgs; });
-        });
-
       nixosConfigurations = {
 
         nixbox =

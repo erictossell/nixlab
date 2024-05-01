@@ -5,8 +5,8 @@
       name = "E-Corp Git";
       log_format = "text";
       ssh = {
-        listen_addr = ":22";
-	public_url = "ssh://eriim.dev:22";
+        listen_addr = ":2222";
+	public_url = "ssh://eriim.dev:2222";
 	max_timeout = 30;
 	idle_timeout = 120;
       };

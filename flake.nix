@@ -74,7 +74,6 @@
               ./modules/ssh
               ./modules/caddy
               ./modules/fail2ban
-	      ./modules/soft-serve
             ];
           }; #nixos-do
 

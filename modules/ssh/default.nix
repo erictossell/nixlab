@@ -7,6 +7,7 @@
 
   services.openssh = {
     enable = true;
+    ports = [ 2973 ];
     settings.PasswordAuthentication = false;
     settings.KbdInteractiveAuthentication = false;
   };

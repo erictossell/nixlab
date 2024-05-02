@@ -71,6 +71,7 @@
             modules = [
               ./hosts
               ./users
+	      ./modules/docker
               ./modules/ssh
               ./modules/caddy
               ./modules/fail2ban

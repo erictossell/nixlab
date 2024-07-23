@@ -3,7 +3,7 @@
     disk = {
       x = {
         type = "disk";
-        device = "/dev/sdx";
+        device = "/dev/sda";
         content = {
           type = "gpt";
           partitions = {
@@ -30,7 +30,7 @@
     zpool = {
       zroot = {
         type = "zpool";
-        mode = "single";
+        mode = "mirror";
         rootFsOptions = {
           compression = "zstd";
           "com.sun:auto-snapshot" = "false";

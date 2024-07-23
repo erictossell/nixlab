@@ -9,9 +9,14 @@
       inputs.darwin.follows = "";
     }; #agenix
 
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
   };
 
-  outputs = { self, nixpkgs, agenix, ... } @ attrs:
+  outputs = { self, nixpkgs, agenix, disko, ... } @ attrs:
     let
       supportedSystems = [ "x86_64-linux" "aarch64-linux" ];
 
@@ -36,6 +41,7 @@
             } // attrs;
             modules = [
               ./.
+	      ./modules/rpi
               ./modules/rpi/4
               ./modules/samba-server
               ./modules/docker
@@ -54,10 +60,29 @@
             } // attrs;
             modules = [
               ./.
+	      ./modules/rpi
               ./modules/rpi/3
               ./modules/docker
             ];
           }; #nixcube
+
+	k3splane =
+          let system = "x86_64-linux";
+          in nixpkgs.lib.nixosSystem {
+            specialArgs = {
+              user = "eriim";
+              hostName = "k3splane01";
+              address = "192.168.2.10";
+              interface = "end0";
+              inherit system;
+            } // attrs;
+            modules = [
+              ./.
+	      disko.nixosModules.disko
+	      ./disko/zfs.nix
+	      ./modules/x86_64
+            ];
+          }; #k3splane01
 
         nixos-do =
           let system = "x86_64-linux";
@@ -90,6 +115,7 @@
             } // attrs;
             modules = [
               ./.
+	      ./modules/rpi
               ./modules/rpi/4
               ./modules/docker
             ];

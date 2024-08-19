@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-
+{ pkgs, ... }:
 {
   # Ensure git is available
   environment.systemPackages = with pkgs; [ git coreutils ];
@@ -15,7 +14,6 @@
       ExecStartPre = "${pkgs.coreutils}/bin/rm -rf /var/www/homepage.eriim.dev/homepage";
     };
   };
-
 
   # Ensure the directory ownership and permissions, if needed
   systemd.tmpfiles.rules = [

@@ -1,4 +1,3 @@
-_:
 {
   networking.firewall = {
     allowedTCPPorts = [ 5357 ];

@@ -1,10 +1,9 @@
 {
   imports = [
     ./agenix
+    ./core
     #./rpi
     ./networking
-    ./nix
-    ./pkgs
     ./ssh
   ];
 }

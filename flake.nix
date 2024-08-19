@@ -27,6 +27,26 @@
     {
       nixosConfigurations = {
 
+	terra =
+          let system = "x86_64-linux";
+          in nixpkgs.lib.nixosSystem {
+            specialArgs = {
+              user = "eriim";
+              hostName = "terra";
+              address = "192.168.2.15";
+              interface = "end0";
+              inherit system;
+            } // attrs;
+            modules = [
+              ./.
+              ./modules/docker
+	      ./modules/x86_64
+	      disko.nixosModules.disko
+	      ./disko/zfs.nix
+            ];
+          }; #terra
+
+
         nixbox =
           let system = "aarch64-linux";
           in nixpkgs.lib.nixosSystem {

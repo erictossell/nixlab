@@ -39,7 +39,7 @@
             } // attrs;
             modules = [
               ./.
-	      ./modules/rpi
+              ./modules/rpi
               ./modules/rpi/4
               ./modules/samba-server
               ./modules/docker
@@ -58,29 +58,11 @@
             } // attrs;
             modules = [
               ./.
-	      ./modules/rpi
+              ./modules/rpi
               ./modules/rpi/3
               ./modules/docker
             ];
           }; #nixcube
-
-	k3splane =
-          let system = "x86_64-linux";
-          in nixpkgs.lib.nixosSystem {
-            specialArgs = {
-              user = "eriim";
-              hostName = "k3splane01";
-              address = "192.168.2.10";
-              interface = "end0";
-              inherit system;
-            } // attrs;
-            modules = [
-              ./.
-	      disko.nixosModules.disko
-	      ./disko/zfs.nix
-	      ./modules/x86_64
-            ];
-          }; #k3splane01
 
         nixos-do =
           let system = "x86_64-linux";
@@ -94,7 +76,7 @@
             modules = [
               ./hosts
               ./users
-	      ./modules/docker
+              ./modules/docker
               ./modules/ssh
               ./modules/caddy
               ./modules/fail2ban
@@ -113,7 +95,7 @@
             } // attrs;
             modules = [
               ./.
-	      ./modules/rpi
+              ./modules/rpi
               ./modules/rpi/4
               ./modules/docker
             ];

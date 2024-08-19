@@ -1,11 +1,10 @@
-{ config, pkgs, lib, agenix, user, ... }:
-let
-  corePackages = import pkgs/core.nix { inherit pkgs; };
-in
+{ pkgs, user, ... }:
 {
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   nix.settings.trusted-users = [ user ];
   nixpkgs.config.allowUnfree = true;
-  environment.systemPackages = corePackages;
+  environment.systemPackages = with pkgs; [
+    git
+  ];
   system.stateVersion = "23.11";
 }

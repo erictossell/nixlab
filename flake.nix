@@ -26,6 +26,7 @@
     in
     {
       nixosConfigurations = {
+
         chrono =
           let system = "x86_64-linux";
           in nixpkgs.lib.nixosSystem {
@@ -33,7 +34,7 @@
               user = "eriim";
               hostName = "chrono";
               address = "192.168.2.16";
-              interface = "end0";
+              interface = "enp0s18";
               inherit system;
             } // attrs;
             modules = [
@@ -45,7 +46,6 @@
             ];
           }; #terra
 
-
 	terra =
           let system = "x86_64-linux";
           in nixpkgs.lib.nixosSystem {
@@ -53,7 +53,7 @@
               user = "eriim";
               hostName = "terra";
               address = "192.168.2.15";
-              interface = "end0";
+              interface = "enp6s18";
               inherit system;
             } // attrs;
             modules = [

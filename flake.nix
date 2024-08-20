@@ -135,6 +135,7 @@
               ./hosts
               ./users
               ./modules/ssh
+	      ./modules/core
             ];
           }; #live-image
 

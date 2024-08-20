@@ -134,7 +134,7 @@
             modules = [
               ./hosts
               ./users
-              ./modules/ssh
+              ./modules/ssh/no_keys.nix
 	      ./modules/core
             ];
           }; #live-image
@@ -152,7 +152,7 @@
             modules = [
               ./hosts
               ./users
-              ./modules/ssh
+              ./modules/ssh/no_keys.nix
             ];
           }; #live-image
 

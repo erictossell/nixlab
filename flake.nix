@@ -41,8 +41,6 @@
               ./.
               ./modules/docker
 	      ./modules/x86_64
-	      disko.nixosModules.disko
-	      ./disko/zfs.nix
             ];
           }; #terra
 

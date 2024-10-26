@@ -10,7 +10,7 @@
     enable = true;
     openFirewall = true;
     securityType = "user";
-    extraConfig = ''
+    settings = ''
       		workgroup = ERIIMGROUP
       		server string = nb
       		netbios name = nb

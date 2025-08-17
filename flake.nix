@@ -27,26 +27,7 @@
     {
       nixosConfigurations = {
 
-        chrono =
-          let system = "x86_64-linux";
-          in nixpkgs.lib.nixosSystem {
-            specialArgs = {
-              user = "eriim";
-              hostName = "chrono";
-              address = "192.168.2.16";
-              interface = "enp0s18";
-              inherit system;
-            } // attrs;
-            modules = [
-              ./.
-              ./modules/docker
-	      ./modules/x86_64
-	      disko.nixosModules.disko
-	      ./disko/btrfs.nix
-            ];
-          }; #terra
-
-	terra =
+	    terra =
           let system = "x86_64-linux";
           in nixpkgs.lib.nixosSystem {
             specialArgs = {

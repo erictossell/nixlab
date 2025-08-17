@@ -14,6 +14,6 @@
       address = "192.168.2.1";
       inherit interface;
     };
-    nameservers = [ "192.168.2.2" ];
+    nameservers = [ "192.168.2.3" ];
   };
 }

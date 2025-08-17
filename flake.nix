@@ -27,7 +27,7 @@
     {
       nixosConfigurations = {
 
-	    terra =
+	terra =
           let system = "x86_64-linux";
           in nixpkgs.lib.nixosSystem {
             specialArgs = {
@@ -59,7 +59,6 @@
               ./.
               ./modules/rpi
               ./modules/rpi/4
-              #./modules/samba-server
               ./modules/docker
             ];
           }; #nixbox

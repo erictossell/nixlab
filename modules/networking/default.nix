@@ -1,7 +1,7 @@
 { hostName, address, interface, ... }:
 {
   imports = [
-    ./tailscale.nix
+    #./tailscale.nix
   ];
   networking = {
     inherit hostName;

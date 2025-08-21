@@ -106,7 +106,7 @@
             specialArgs = {
               user = "eriim";
               hostName = "nixboard";
-              address = "192.168.2.7";
+              address = "192.168.2.13";
               interface = "wlan0";
               inherit system;
             } // attrs;

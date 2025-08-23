@@ -34,7 +34,7 @@
               user = "eriim";
               hostName = "terra";
               address = "192.168.2.15";
-              interface = "enp6s18";
+              interface = "ens18";
               inherit system;
             } // attrs;
             modules = [

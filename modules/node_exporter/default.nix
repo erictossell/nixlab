@@ -6,6 +6,8 @@
     enabledCollectors = [ "systemd" ];
     extraFlags = [ "--collector.ethtool" "--collector.softirqs" "--collector.tcpstat" ];
   };
-  networking.firewall.allowedTCPPorts = [ 9100 ];
-
+  networking.firewall.extraRules = ''
+    iptables -A INPUT -p tcp --dport 9100 -s 192.168.2.15 -j ACCEPT
+    iptables -A INPUT -p tcp --dport 9100 -j DROP
+  '';
 }

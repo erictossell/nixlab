@@ -27,7 +27,7 @@
     {
       nixosConfigurations = {
 
-	terra =
+        terra =
           let system = "x86_64-linux";
           in nixpkgs.lib.nixosSystem {
             specialArgs = {
@@ -40,10 +40,9 @@
             modules = [
               ./.
               ./modules/docker
-	      ./modules/x86_64
+              ./modules/x86_64
             ];
           }; #terra
-
 
         nixbox =
           let system = "aarch64-linux";
@@ -107,7 +106,7 @@
               user = "eriim";
               hostName = "nixboard";
               address = "192.168.2.13";
-              interface = "wlan0";
+              interface = "end0";
               inherit system;
             } // attrs;
             modules = [
@@ -132,7 +131,7 @@
               ./hosts
               ./users
               ./modules/ssh/no_keys.nix
-	      ./modules/core
+              ./modules/core
             ];
           }; #live-image
 

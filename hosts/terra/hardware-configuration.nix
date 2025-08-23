@@ -5,7 +5,8 @@
 
 {
   imports =
-    [ (modulesPath + "/profiles/qemu-guest.nix")
+    [
+      (modulesPath + "/profiles/qemu-guest.nix")
     ];
 
   boot.initrd.availableKernelModules = [ "uhci_hcd" "ehci_pci" "ahci" "virtio_pci" "virtio_scsi" "sd_mod" "sr_mod" ];
@@ -14,28 +15,33 @@
   boot.extraModulePackages = [ ];
 
   fileSystems."/" =
-    { device = "zroot";
+    {
+      device = "zroot";
       fsType = "zfs";
     };
 
   fileSystems."/boot" =
-    { device = "/dev/disk/by-uuid/2D36-296B";
+    {
+      device = "/dev/disk/by-uuid/2D36-296B";
       fsType = "vfat";
       options = [ "fmask=0022" "dmask=0022" ];
     };
 
   fileSystems."/ext4onzfs" =
-    { device = "/dev/disk/by-uuid/2d027ee4-e859-4328-9150-b738998233b0";
+    {
+      device = "/dev/disk/by-uuid/2d027ee4-e859-4328-9150-b738998233b0";
       fsType = "ext4";
     };
 
   fileSystems."/zfs_fs" =
-    { device = "zroot/zfs_fs";
+    {
+      device = "zroot/zfs_fs";
       fsType = "zfs";
     };
 
   fileSystems."/zfs_legacy_fs" =
-    { device = "zroot/zfs_legacy_fs";
+    {
+      device = "zroot/zfs_legacy_fs";
       fsType = "zfs";
     };
 
